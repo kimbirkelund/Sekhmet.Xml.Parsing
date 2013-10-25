@@ -7,7 +7,7 @@ try
 }
 catch 
 {
-    $env:Path = "$($env:Path);$($env:TEAMCITY_GIT_PATH)";
+    $env:Path = "$($env:Path);$(Split-Path -Parent $env:TEAMCITY_GIT_PATH)";
     Write-Debug "env:Path: $($env:Path)";
 
     try
