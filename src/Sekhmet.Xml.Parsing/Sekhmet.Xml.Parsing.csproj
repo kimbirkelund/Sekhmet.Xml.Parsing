@@ -47,6 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Version.cs">
+      <Link>Properties\Version.cs</Link>
+    </Compile>
     <Compile Include="AttributePart.cs" />
     <Compile Include="BasicValueConverter.cs" />
     <Compile Include="CanConvertResult.cs" />

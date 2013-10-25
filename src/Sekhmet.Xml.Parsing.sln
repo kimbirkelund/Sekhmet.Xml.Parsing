@@ -14,6 +14,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekhmet.Xml.Parsing", "Sekh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sekhmet.Xml.Parsing.Test", "Sekhmet.Xml.Parsing.Test\Sekhmet.Xml.Parsing.Test.csproj", "{D3DFCA6D-1673-4078-8DAC-D381EAA4E05C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{419A4267-E995-454F-841F-5A1D63654FFB}"
+	ProjectSection(SolutionItems) = preProject
+		Version.cs = Version.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
