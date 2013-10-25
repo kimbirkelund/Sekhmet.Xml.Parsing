@@ -81,3 +81,4 @@ $updatedVersionContent = $versionContent -replace "\.\d+`"",".$commitsSinceLastT
 Write-Debug "updatedVersionContent: $updatedVersionContent";
 
 Set-Content -Value $updatedVersionContent -Path $versionFile;
+return 0;
