@@ -21,10 +21,10 @@ if (-not (Test-Path $versionFile))
 function validateLastExitCode()
 {
 	$updateStatus = $LASTEXITCODE
-    Write-Debug "Cetrea_GitRevision.updateStatus: $updateStatus";
+    Write-Debug "updateStatus: $updateStatus";
     if ($updateStatus -ne 0)
     {
-        throw "Unable to get git revision. Last exit code: $updateStatus";
+        Write-Error "Unable to get git revision. Last exit code: $updateStatus";
     }
 }
 
