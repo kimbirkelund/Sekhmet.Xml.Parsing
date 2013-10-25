@@ -1,12 +1,15 @@
 $ErrorActionPreference = "Stop";
+$DebugPreference = "Continue";
 
 $versionFile = "Version.cs";
 if (Test-Path $versionFile)
 {
+    Write-Debug "found version file in current folder";
     $versionFile = Resolve-Path $versionFile;
 } 
 elseif ($MyInvocation.MyCommand.Path -ne $null)
 {
+    Write-Debug "using MyInvocation path to find version file";
     $versionFile = Join-Path (Split-Path -Parent $MyInvocation.MyCommand.Path) "Version.cs";
 }
 
