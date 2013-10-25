@@ -8,6 +8,7 @@ try
 catch 
 {
     $env:Path = "$($env:Path);$($env:TEAMCITY_GIT_PATH)";
+    Write-Debug "env:Path: $($env:Path)";
 
     try
     {
@@ -16,6 +17,7 @@ catch
     catch 
     {
         Write-Error "git not installed";
+        return;
     }
 }
 
