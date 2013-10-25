@@ -7,7 +7,16 @@ try
 }
 catch 
 {
-    Write-Error "git not installed";
+    $env:Path = "$($env:Path);$($env:TEAMCITY_GIT_PATH)";
+
+    try
+    {
+        git | Out-Null
+    }
+    catch 
+    {
+        Write-Error "git not installed";
+    }
 }
 
 $versionFile = "Version.cs";
