@@ -1,6 +1,19 @@
-$versionFile = Join-Path (Split-Path -Parent $MyInvocation.MyCommand.Path) "Version.cs";
-
 $ErrorActionPreference = "Stop";
+
+$versionFile = "Version.cs";
+if (Test-Path $versionFile)
+{
+    $versionFile = Resolve-Path $versionFile;
+} 
+elseif ($MyInvocation.MyCommand.Path -ne $null)
+{
+    $versionFile = Join-Path (Split-Path -Parent $MyInvocation.MyCommand.Path) "Version.cs";
+}
+
+if (-not (Test-Path $versionFile))
+{
+    throw "Unable to find versin file.";
+}
 
 function validateLastExitCode()
 {
