@@ -1,6 +1,15 @@
 $ErrorActionPreference = "Stop";
 $DebugPreference = "Continue";
 
+try
+{
+    git | Out-Null
+}
+catch 
+{
+    Write-Error "git not installed";
+}
+
 $versionFile = "Version.cs";
 if (Test-Path $versionFile)
 {
