@@ -16,8 +16,7 @@ catch
     }
     catch 
     {
-        Write-Error "git not installed";
-        return;
+        throw "git not installed";
     }
 }
 
@@ -44,9 +43,12 @@ function validateLastExitCode()
     Write-Debug "updateStatus: $updateStatus";
     if ($updateStatus -ne 0)
     {
-        Write-Error "Unable to get git revision. Last exit code: $updateStatus";
+        throw "Unable to get git revision. Last exit code: $updateStatus";
     }
 }
+
+git fetch origin;
+validateLastExitCode;
 
 git fetch --tags origin;
 validateLastExitCode;
@@ -81,4 +83,4 @@ $updatedVersionContent = $versionContent -replace "\.\d+`"",".$commitsSinceLastT
 Write-Debug "updatedVersionContent: $updatedVersionContent";
 
 Set-Content -Value $updatedVersionContent -Path $versionFile;
-return 0;
+exit 0;
