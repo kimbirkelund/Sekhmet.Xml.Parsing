@@ -1,37 +1,7 @@
 $ErrorActionPreference = "Stop";
 $DebugPreference = "Continue";
 
-try
-{
-    git | Out-Null
-}
-catch 
-{
-    $env:Path = "$($env:Path);$(Split-Path -Parent $env:TEAMCITY_GIT_PATH)";
-    Write-Debug "env:Path: $($env:Path)";
-
-    try
-    {
-        git | Out-Null
-    }
-    catch 
-    {
-        throw "git not installed";
-    }
-}
-
-$versionFile = "Version.cs";
-if (Test-Path $versionFile)
-{
-    Write-Debug "found version file in current folder";
-    $versionFile = Resolve-Path $versionFile;
-} 
-elseif ($MyInvocation.MyCommand.Path -ne $null)
-{
-    Write-Debug "using MyInvocation path to find version file";
-    $versionFile = Join-Path (Split-Path -Parent $MyInvocation.MyCommand.Path) "Version.cs";
-}
-
+$versionFile = Join-Path (Split-Path -Parent $MyInvocation.MyCommand.Path) "Version.cs";
 if (-not (Test-Path $versionFile))
 {
     throw "Unable to find versin file.";
@@ -82,5 +52,4 @@ Write-Debug "versionContent: $versionContent";
 $updatedVersionContent = $versionContent -replace "\.\d+`"",".$commitsSinceLastTag`"";
 Write-Debug "updatedVersionContent: $updatedVersionContent";
 
-Set-Content -Value $updatedVersionContent -Path $versionFile;
-exit 0;
+Set-Content -Value $updatedVersionContent.Trim() -Path $versionFile;
